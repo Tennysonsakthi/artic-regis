@@ -198,14 +198,10 @@
 
         .referral-card {
             background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 20px; 
-            padding: 24px 14px 24px; /* Increased vertical padding for mobile */
-            margin-top: 18px; /* Increased margin for mobile */
+            padding: 24px 14px 24px; margin-top: 18px; 
             box-shadow: 0 10px 24px rgba(0, 0, 0, 0.04); text-align: center; width: 100%;
         }
-        /* Lock back down to compact sizes strictly for laptop (640px+) */
-        @media(min-width: 640px) { 
-            .referral-card { border-radius: 24px; padding: 22px 20px 22px; margin-top: 10px; } 
-        }
+        @media(min-width: 640px) { .referral-card { border-radius: 24px; padding: 22px 20px 22px; margin-top: 10px; } }
 
         .marker-stroke { stroke-dasharray: 115; stroke-dashoffset: 115; transition: stroke-dashoffset 1.8s cubic-bezier(0.25, 1, 0.5, 1); }
         .active .marker-stroke { stroke-dashoffset: 0; }
@@ -237,6 +233,44 @@
         .whatsapp-btn:active { transform: translateY(2px); box-shadow: 0 4px 10px rgba(0, 215, 87, 0.4) !important; }
         .whatsapp-icon { width: 18px; height: 18px; fill: white; transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); flex-shrink: 0; }
         @media(min-width: 640px) { .whatsapp-icon { width: 22px; height: 22px; } }
+
+        /* =========================================
+           SHORT MOBILE SCREENS (<720px height) FIX 
+           Prevents overflow specifically on small phones 
+           (e.g., 375x645) without affecting tall phones 
+           or desktop screens.
+           ========================================= */
+        @media (max-height: 720px) and (max-width: 639px) {
+            /* Form Adjustments */
+            #page-form { padding-top: 16px !important; padding-bottom: 24px !important; }
+            #page-form .gsap-card { padding-top: 24px !important; padding-bottom: 32px !important; min-height: 0 !important; }
+            #page-form .mb-8 { margin-bottom: 24px !important; }
+            .field-inner { height: 50px !important; }
+            .submit-btn { height: 50px !important; }
+            .pt-\[26px\] { padding-top: 20px !important; }
+
+            /* End Page Adjustments */
+            #page-ending { padding-top: 16px !important; padding-bottom: 16px !important; }
+            #success-inner { padding-top: 24px !important; padding-bottom: 8px !important; }
+            #success-inner .mb-6 { margin-bottom: 16px !important; }
+            
+            #checkmark-circle { width: 56px !important; height: 56px !important; }
+            #checkmark-circle svg { width: 28px !important; height: 28px !important; }
+            
+            #success-inner h2 { font-size: 24px !important; margin-bottom: 4px !important; }
+            #success-inner p { margin-bottom: 12px !important; font-size: 13px !important; }
+            
+            #reward-inner { padding-bottom: 24px !important; }
+            .referral-card { padding: 16px 14px !important; margin-top: 12px !important; }
+            .floating-gift { margin-bottom: 8px !important; }
+            .floating-gift svg { width: 40px !important; height: 40px !important; }
+            
+            .referral-card h3 { font-size: 18px !important; margin-bottom: 4px !important; }
+            .referral-card p { font-size: 12px !important; margin-bottom: 12px !important; }
+            .whatsapp-btn { height: 44px !important; font-size: 13px !important; }
+            
+            #reward-inner a { margin-top: 16px !important; }
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -342,10 +376,8 @@
                 <!-- TOP SECTION -->
                 <div id="success-wrapper" class="w-full overflow-hidden" style="height: 0; opacity: 0;">
                     
-                    <!-- Increased mobile padding `pt-12` for a taller stretch, strictly kept `sm:pt-10` for laptop -->
                     <div id="success-inner" class="flex flex-col items-center w-full relative z-10 bg-white pt-12 sm:pt-10 pb-4 sm:pb-2 md:pb-3">
                         
-                        <!-- Increased mobile margin `mb-6`, strictly kept `sm:mb-5` for laptop -->
                         <div class="relative mb-6 sm:mb-5">
                             <div class="absolute inset-0 rounded-full border-[2.5px] border-[#22c55e] pulse-ring"></div>
                             <div id="checkmark-circle" class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-[#22c55e] to-[#16a34a] rounded-full flex items-center justify-center shadow-[0_10px_25px_rgba(34,197,94,0.35)] relative z-10">
@@ -355,12 +387,10 @@
                             </div>
                         </div>
 
-                        <!-- Increased mobile margin `mb-2`, strictly kept `sm:mb-1.5` for laptop -->
                         <h2 class="success-stagger font-heading-new text-[28px] sm:text-[32px] md:text-[36px] font-black text-[#0f1a0d] mb-2 sm:mb-1.5 tracking-tight">
                             Thank <span class="text-[#22c55e]">You!</span>
                         </h2>
                         
-                        <!-- Increased mobile margin `mb-6`, strictly kept `sm:mb-5` for laptop -->
                         <p class="success-stagger text-slate-700 text-[13.5px] sm:text-[15px] font-semibold mb-6 sm:mb-5">Your wholesale access is fully secured.</p>
 
                         <div class="success-stagger location-badge mb-2">
@@ -374,7 +404,6 @@
                 <!-- BOTTOM SECTION -->
                 <div id="reward-wrapper" class="w-full overflow-hidden" style="height: 0; opacity: 0;">
                     
-                    <!-- Increased mobile padding `pb-12` for a taller stretch, strictly kept `sm:pb-10` for laptop -->
                     <div id="reward-inner" class="w-full pt-[0.2rem] pb-12 sm:pb-10 flex flex-col items-center">
                         
                         <div class="referral-card">
@@ -411,7 +440,6 @@
                             </button>
                         </div>
 
-                        <!-- Increased mobile margin `mt-8` for stretch, strictly kept `sm:mt-5` for laptop -->
                         <a href="https://articmarket.com" class="text-slate-600 hover:text-slate-800 hover:underline text-[12px] font-bold transition-all uppercase tracking-[0.06em] flex items-center justify-center gap-1.5 mt-8 sm:mt-5">
                             Skip to website
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -526,4 +554,4 @@
         });
     </script>
 </body>
-</html>last
+</html>
